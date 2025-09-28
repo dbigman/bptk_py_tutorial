@@ -1,0 +1,16 @@
+{
+  "id": "snapshot_1759019487715_js1u8vyfe",
+  "approvalId": "approval_1759019487694_slmou72ra",
+  "approvalTitle": "Phase1 Data Contracts Pack — Requirements Approval",
+  "version": 1,
+  "timestamp": "2025-09-28T00:31:27.714Z",
+  "trigger": "initial",
+  "status": "pending",
+  "content": "# Requirements — hmlv-data-contracts\n\nPurpose\n- Record Phase 1 completion (Data Contracts Pack) and link artifacts. No approvals requested per user instruction.\n\nSources\n- [`hmlv_manufacturing_simulator_prd_v_0.md`](hmlv_manufacturing_simulator_prd_v_0.md)\n- [`implementation_plan_2025-09-27T18-06-45Z.md`](implementation_plan_2025-09-27T18-06-45Z.md)\n- [`agent_instructions/INSTRUCTION-2.md`](agent_instructions/INSTRUCTION-2.md)\n\nScope (Phase 1 — Data Contracts Pack)\n- Author single authoritative JSON Schema\n- Prepare toy CSV templates (one header row, minimal data)\n- Define validation pipeline producing ValidationReport (file, row, column, message)\n- Provide one negative dataset to exercise diagnostics\n\nProduced Artifacts\n- JSON Schema: [`schemas/project_config.schema.json`](schemas/project_config.schema.json)\n- CSV templates:\n  - [`examples/toy/products.csv`](examples/toy/products.csv)\n  - [`examples/toy/routings.csv`](examples/toy/routings.csv)\n  - [`examples/toy/machines.csv`](examples/toy/machines.csv)\n  - [`examples/toy/operators.csv`](examples/toy/operators.csv)\n  - [`examples/toy/setup_matrix.csv`](examples/toy/setup_matrix.csv)\n  - [`examples/toy/demand.csv`](examples/toy/demand.csv)\n  - [`examples/toy/calendars.csv`](examples/toy/calendars.csv)\n  - [`examples/toy/mtbf_mttr.csv`](examples/toy/mtbf_mttr.csv)\n  - [`examples/toy/yields.csv`](examples/toy/yields.csv)\n  - [`examples/toy/skills.csv`](examples/toy/skills.csv)\n- Negative dataset: [`examples/toy/negative/products_invalid.csv`](examples/toy/negative/products_invalid.csv)\n- Validation pipeline (interfaces in engine):\n  - [`engine/run.py`](engine/run.py)\n- Validation runner:\n  - [`tools/validate_toys.py`](tools/validate_toys.py)\n- Validation output:\n  - [`.artifacts/validation/validation_report.json`](.artifacts/validation/validation_report.json)\n\nAcceptance Criteria (met)\n- All toy CSVs parse; schema and CSV validators produce actionable diagnostics (file, row, column, message)\n- Negative case fails with clear error: products.process_time_mean ≤ 0\n- Validation report generated locally\n\nNotes (KISS/YAGNI)\n- Schema enforces numeric constraints and enums; full referential integrity checks deferred to later phases\n- IANA timezones used for plant/calendars\n- Simple row/column error format for UI/CI consumption\n\nNext (Phase 2 preview)\n- Extend referential checks (IDs across arrays)\n- Implement dispatch/release/failures/rework semantics; KPI wiring",
+  "fileStats": {
+    "size": 2453,
+    "lines": 50,
+    "lastModified": "2025-09-27T23:53:59.301Z"
+  },
+  "comments": []
+}

@@ -1,141 +1,43 @@
 # Changelog
 
-## BPTK Change Log
+All notable changes to this project are documented in this file.
 
-### 2.0.0
+## 2025-09-28 — Phase 1: Data Contracts Pack (completed / ready for review)
 
-* Support for multidimensional sddsl
+Summary:
+- Completed authoritative JSON Schema for project import and validation: [`schemas/project_config.schema.json`](schemas/project_config.schema.json:1)
+- Created authoritative toy CSV templates (products, routings, machines, operators, setup_matrix, demand, calendars, mtbf_mttr, yields, skills) under [`examples/toy/`](examples/toy/:1)
+- Added a negative test dataset to exercise validation diagnostics: [`examples/toy/negative/products_invalid.csv`](examples/toy/negative/products_invalid.csv:1)
+- Implemented validation pipeline:
+  - Schema validation with Draft7 + FormatChecker and IANA timezone checks: [`engine/run.py::validate_project_config`](engine/run.py:213)
+  - CSV validation with actionable row/column messages: [`engine/run.py::validate_csv_documents`](engine/run.py:338)
+  - Referential integrity checks (including nested routing step checks): [`engine/run.py::validate_referential_integrity`](engine/run.py:463)
+- Added structured ValidationReport and typed ValidationIssue model:
+  - Validation models and parser: [`engine/validation.py`](engine/validation.py:1)
+  - Structured runner and JSON report: [`tools/validate_toys.py`](tools/validate_toys.py:1) → `.artifacts/validation/validation_report.json`
+- Timezone utilities (IANA helper & alias map): [`engine/timezones.py`](engine/timezones.py:1)
+- Tests:
+  - Basic validation pipeline test: [`tests/test_validation.py`](tests/test_validation.py:1) (1 passed)
+- Spec-workflow:
+  - Recorded Phase 1 artifacts under `.spec-workflow/specs/hmlv-data-contracts/` (requirements.md, design.md, tasks.md)
+  - Approval requests submitted (requirements & design) — pending in dashboard (approval IDs recorded in repo activity)
 
-### 1.9.6
+Files changed/added (high level):
+- engine/run.py (validators, referential checks, format checking)
+- engine/validation.py (typed ValidationIssue / ValidationReport)
+- engine/timezones.py (IANA helper)
+- tools/validate_toys.py (runner; structured output)
+- examples/toy/* (CSV templates)
+- examples/toy/negative/products_invalid.csv
+- .artifacts/validation/validation_report.json (generated artifact)
+- .spec-workflow/specs/hmlv-data-contracts/* (requirements/design/tasks)
+- TASK_LIST_INSTRUCTION_2.md (task log)
+- tests/test_validation.py
 
-* Enabled modulo operation for sddsl-elements
-* removed unnecessary code
-* added unittests/pytests 
+Commit message (proposed)
+- feat(data-contracts): add project_config JSON Schema, toy CSVs, and validation pipeline
+- add structured ValidationReport and ValidationIssue dataclass; implement referential checks and IANA timezone helpers; add tests and spec-workflow artifacts; generate validation report
 
-### 1.9.5
-
-* Fix publication issues
-
-### 1.9.4
-
-* Fix publication issues
-
-### 1.9.3
-
-* Fix agent.py serialize method
-* Removed to_string method of agent.py
-* Fix csv_datacollector.py 
-* Removed kinesis_datacollector.py, yaml_model_parser.py and serializer.py
-* Fix model.py reset method
-* Adjusted model.py configure_properties method (only dict-values allowed)
-* added unittests
-
-### 1.9.2
-
-* Fix to build script
-
-### 1.9.1
-
-* Bump versions of key dependencies
-* Update XMILE parser grammar to remove depreciation warning
-* Remove obsolete documentation files
-* Update setup to use pyproject.toml
-* Bump Python Version to 3.11
-
-### 1.9.0
-* BPTKServer: `run` endpoint now also works for agent-based models
-* Model: Add `configure_agent`, `configure_properties` and `delete_agent(s)` methods
-* Bump versions of key dependencies
-
-### 1.8.0
-* BPTKServer: Add new endpoint `start-instances` that starts multiple instances in one goo
-
-### 1.7.6
-* BPTK: Improve handling of floating point numbers when using small DTs
-* ScenarioManagerSD: Fixed an issue that caused models with biflows to be cloned incorrectly
-
-### 1.7.5
-* BPTK: Fix that caused a crash when using multiple scenario files for hybrid models
-
-### 1.7.4
-* BPTK: Fix bug in reset_scenarios for Hybrid Scenario Managers
-
-### 1.7.3
-* BPTK: Update dependencies of Pandas / Matplotlib / Sympy / Parsimonious / Pyyaml / Xlsxwriter / Jinja2 / Requests / Jsonpickle / Flask
-* Successfully tested with Python 3.11
-
-### 1.7.2
-* BPTK: Fix imports of SimpleDashboard class
-* BPTK: Update dependency of Scipy, Numpy and Pyyaml
-
-### 1.7.1
-* BPTK: reset_cache now also resets the data collector in agent based models
-* BPTK: reset_cache calls the reset_cache method on all agents
-* BPTK: agents now have a reset_cache method that can be used to reset agent state
-* BPTK: Updated dependency on ipywidgets to 8.0.4
-
-### 1.7.0
-* BPTK Server: Remote authorization for root, full-metrics and metrics endpoints
-* BPTK Server: Add /healthy endpoint
-* BPTK Server: stop-instance and load-state are now POST resources
-* Bug Fix: Remove debug print message
-
-## BPTK Tutorial and Documentation Change Log
-
-### 2025-03-27
-
-* Update to BPTK 2.0.0
-* Add notebook on multidimensional models
-
-### 2023-11-03
-
-* Update to Enterprise Digital Twin
-
-
-### 2023-04-02
-
-* Add section on System Archetypes to model library
-* Update and fix some of the diagrams
-
-### 2023-03-21
-
-* Simplify SD model in Enterprise Digital Twin
-* Update documentation of Model and Module
-* Re-organize tutorials
-* Merge docs on BptkServer
-* Move doc on ExternalStateAdapter to API section
-* Add a document on the mathematics underlying the SD DSL
-* Update document on SD DSL functions
-* Bump version of BPTK
-
-### 2023-03-11
-
-* Bump version of BPTK
-
-### 2023-03-04
-
-* Move XMILE into System Dynamcis section
-* Add Algolia search
-
-### 2023-03-03
-
-* Improve readability of API docs
-* Use Jupyter notebooks instead of markdown for overview pages
-* Add "Introduction to BPTK Server" notebook
-* Add "SD DSL Under The Hood" notebook
-* Remove readme.ipynb to reduce reduncancy
-
-### 2023-03-01
-
-* Bump version of BPTK to 1.7.4
-* Add Beer Distribution Game to Model Library
-* Improve link structure
-
-### 2023-02-26
-
-* Change theme
-* Add Quickstart
-* Migrate model library from Model Library Github repo
-* Add Enterprise Digital Twin to Model Libary
-
-
+Notes
+- Phase‑1 is ready for review and approval via the Spec Workflow dashboard. Two approval requests are pending.
+- Phase‑2 follow-ups (optional / in-progress): enhance IANA whitelist, extend referential checks further, expose ValidationReport public API.

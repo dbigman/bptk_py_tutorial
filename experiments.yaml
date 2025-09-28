@@ -1,0 +1,19 @@
+# experiments.yaml — Example experiment definitions and parameter sweeps (Phase 0 placeholder)
+experiments:
+  - id: baseline
+    description: "Toy baseline scenario"
+    params:
+      setup_time_factor: 1.0
+      wip_cards: 10
+      dispatch_rule: EDD
+  - id: setup_reduction
+    description: "Reduce setup times to test impact"
+    params:
+      setup_time_factor: 0.75
+      wip_cards: 10
+sweeps:
+  - param: setup_time_factor
+    values: [0.75, 0.9, 1.0]
+  - param: wip_cards
+    values: [5, 10, 20]
+parallelism: 4

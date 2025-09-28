@@ -1,0 +1,265 @@
+openapi: "3.1.0"
+info:
+  title: HMLV Manufacturing Simulator API
+  version: "0.1.0"
+  description: Minimal OpenAPI skeleton for Phase 0
+servers:
+  - url: http://localhost:8000
+security:
+  - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    ProjectImportPayload:
+      type: object
+      properties:
+        files:
+          type: object
+          description: "map of filename -> CSV/text content (placeholder)"
+    ValidationReport:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        warnings:
+          type: array
+          items:
+            type: string
+        errors:
+          type: array
+          items:
+            type: string
+    ProjectSnapshot:
+      type: object
+      properties:
+        snapshot_id:
+          type: string
+        project_id:
+          type: string
+        imported_at:
+          type: string
+          format: date-time
+    ScenarioConfig:
+      type: object
+      properties:
+        dispatch_rule:
+          type: string
+        wip_caps:
+          type: object
+    RunEnqueued:
+      type: object
+      properties:
+        run_id:
+          type: string
+        project_id:
+          type: string
+        status:
+          type: string
+        seed:
+          type: integer
+    RunStatus:
+      type: object
+      properties:
+        run_id:
+          type: string
+        status:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        finished_at:
+          type: string
+          format: date-time
+        progress_pct:
+          type: integer
+        message:
+          type: string
+    RunResultsIndex:
+      type: object
+      properties:
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+              media_type:
+                type: string
+              size:
+                type: integer
+              url:
+                type: string
+        summary:
+          type: object
+    DebriefRequest:
+      type: object
+      properties:
+        run_id:
+          type: string
+        template_id:
+          type: string
+    DebriefArtifact:
+      type: object
+      properties:
+        artifact_handle:
+          type: string
+        url:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+paths:
+  /projects/{project_id}/import:validate:
+    post:
+      summary: Validate project import payload
+      operationId: post_validate_import
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectImportPayload'
+      responses:
+        "200":
+          description: ValidationReport
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationReport'
+        "400":
+          description: Schema violation
+  /projects/{project_id}/import:commit:
+    post:
+      summary: Commit validated project import
+      operationId: post_commit_import
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectImportPayload'
+      responses:
+        "201":
+          description: ProjectSnapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectSnapshot'
+        "400":
+          description: Invalid or not validated
+  /projects/{project_id}/runs:
+    post:
+      summary: Enqueue a run for project
+      operationId: post_runs
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioConfig'
+      responses:
+        "202":
+          description: Run enqueued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunEnqueued'
+  /projects/{project_id}/runs/{run_id}:
+    get:
+      summary: Get run status
+      operationId: get_run
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: run_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: RunStatus
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunStatus'
+        "404":
+          description: Not found
+  /projects/{project_id}/runs/{run_id}/results:
+    get:
+      summary: Get run results index (artifacts)
+      operationId: get_run_results
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: run_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: RunResultsIndex
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunResultsIndex'
+        "404":
+          description: Not ready
+  /projects/{project_id}/debriefs:
+    post:
+      summary: Render debrief for run
+      operationId: post_debriefs
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DebriefRequest'
+      responses:
+        "201":
+          description: DebriefArtifact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DebriefArtifact'
+        "404":
+          description: Run not complete
+tags:
+  - name: projects
+    description: Project and run lifecycle endpoints

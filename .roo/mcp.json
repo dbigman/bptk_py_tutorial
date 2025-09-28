@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "sequentialthinking": {
+      "command": "node",
+      "args": [
+        "E:\\Github\\bptk_py_tutorial\\.roo\\sequentialthinking\\dist\\index.js"
+      ],
+      "env": {},
+      "disabled": false,
+      "timeout": 60,
+      "alwaysAllow": [
+        "sequentialthinking"
+      ],
+      "disabledTools": []
+    },
+    "spec-workflow": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@pimzino/spec-workflow-mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "spec-workflow-guide",
+        "approvals",
+        "spec-status",
+        "get-template-context",
+        "create-spec-doc",
+        "request-approval"
+      ],
+      "alwaysAllow": [
+        "spec-list",
+        "spec-workflow-guide",
+        "steering-guide",
+        "spec-status",
+        "approvals"
+      ]
+    },
+    "redis": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-redis",
+        "--url",
+        "redis://127.0.0.1:6379"
+      ],
+      "env": {
+        "REDIS_HOST": "127.0.0.1",
+        "REDIS_PORT": "6379",
+        "REDIS_DB": "0",
+        "REDIS_PASSWORD": ""
+      }
+    }
+  }
+}

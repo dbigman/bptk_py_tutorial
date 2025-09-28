@@ -1,0 +1,189 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectConfig",
+  "type": "object",
+  "required": [
+    "plant",
+    "products",
+    "routings",
+    "machines"
+  ],
+  "properties": {
+    "plant": {
+      "type": "object",
+      "required": ["plant_id", "name", "timezone"],
+      "properties": {
+        "plant_id": { "type": "string" },
+        "name": { "type": "string" },
+        "timezone": {
+          "type": "string",
+          "description": "IANA timezone, e.g. 'America/La_Paz'"
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["product_id"],
+        "properties": {
+          "product_id": { "type": "string" },
+          "family_id": { "type": "string" },
+          "process_time_mean": { "type": "number", "exclusiveMinimum": 0 },
+          "process_time_sigma": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": true
+      }
+    },
+    "routings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["routing_id", "product_id", "steps"],
+        "properties": {
+          "routing_id": { "type": "string" },
+          "product_id": { "type": "string" },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["step_id", "machine_group_id"],
+              "properties": {
+                "step_id": { "type": "string" },
+                "machine_group_id": { "type": "string" },
+                "process_time_mean": { "type": "number", "exclusiveMinimum": 0 },
+                "yield_rate": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "machines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["machine_id", "name"],
+        "properties": {
+          "machine_id": { "type": "string" },
+          "name": { "type": "string" },
+          "cell_id": { "type": "string" },
+          "capacity": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "operators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["operator_id"],
+        "properties": {
+          "operator_id": { "type": "string" },
+          "skills": { "type": "array", "items": { "type": "string" } },
+          "shift_calendar_id": { "type": "string" }
+        }
+      }
+    },
+    "setup_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from_family_id", "to_family_id", "setup_time"],
+        "properties": {
+          "from_family_id": { "type": "string" },
+          "to_family_id": { "type": "string" },
+          "setup_time": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "demand": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["product_id", "due_date", "quantity"],
+        "properties": {
+          "product_id": { "type": "string" },
+          "due_date": { "type": "string", "format": "date-time" },
+          "quantity": { "type": "integer", "minimum": 1 },
+          "release_policy_tags": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "calendars": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["calendar_id", "timezone"],
+        "properties": {
+          "calendar_id": { "type": "string" },
+          "timezone": { "type": "string" },
+          "blackout_windows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["start", "end"],
+              "properties": {
+                "start": { "type": "string", "format": "date-time" },
+                "end": { "type": "string", "format": "date-time" },
+                "reason": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "mtbf_mttr": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["machine_id", "mtbf_hours", "mttr_hours"],
+        "properties": {
+          "machine_id": { "type": "string" },
+          "mtbf_hours": { "type": "number", "exclusiveMinimum": 0 },
+          "mttr_hours": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "yields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step_id", "yield_rate"],
+        "properties": {
+          "step_id": { "type": "string" },
+          "yield_rate": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["operator_id", "machine_group_id"],
+        "properties": {
+          "operator_id": { "type": "string" },
+          "machine_group_id": { "type": "string" },
+          "level": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "experiments": {
+      "type": "object",
+      "properties": {
+        "sweeps": { "type": "object" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "dispatchRule": {
+      "type": "string",
+      "enum": ["EDD", "SPT", "ATC", "ATCS", "LSN"]
+    },
+    "releasePolicy": {
+      "type": "string",
+      "enum": ["CONWIP", "POLCA"]
+    }
+  }
+}
