@@ -9,10 +9,8 @@
     
 import numpy as np
 from scipy.interpolate import interp1d
-from scipy.special import gammaln
-from scipy.stats import norm
-import math, statistics, random, logging
-from datetime import datetime
+import random
+import logging
 import re
 import itertools
 from copy import copy, deepcopy
@@ -274,7 +272,7 @@ class simulation_model():
         sorted_list = np.sort(lis)
         try:
             rankth_elem = sorted_list[rank-1]
-        except IndexError as e:
+        except IndexError:
             logging.error("RANK: Rank {} too high for array of size {}".format(rank,len(lis)))
         return (lis==rankth_elem).nonzero()[0][0]+1
         
@@ -489,7 +487,7 @@ class simulation_model():
             :param t:
             :return:
             """
-            if not eq in memo.keys(): memo[eq] = {}
+            if eq not in memo.keys(): memo[eq] = {}
             mymemo = memo[eq]
             if t in mymemo.keys(): return mymemo[t]
             else:
@@ -519,7 +517,6 @@ class simulation_model():
         """
         memo = {}
         dt = self.dt
-        from copy import deepcopy
 
         def mem(eq, t):
             """
@@ -528,7 +525,7 @@ class simulation_model():
             :param t:
             :return:
             """
-            if not eq in memo.keys(): memo[eq] = {}
+            if eq not in memo.keys(): memo[eq] = {}
             mymemo = memo[eq]
             if t in mymemo.keys():return mymemo[t]
             else:
@@ -619,7 +616,7 @@ class simulation_model():
                 dim = self.dimensions_order[equation_basic][index]
                 labels += [self.dimensions[dim]["labels"]]
             else:
-                if not type(elem) is list:
+                if type(elem) is not list:
                     labels += [[elem]]
                 else:
                     labels += [elem]
@@ -649,7 +646,7 @@ class simulation_model():
         if "*" in equation or ":" in equation:
             return self.get_dimensions(equation,arg)
             
-        if not equation in self.equations.keys():
+        if equation not in self.equations.keys():
 
             # match array pattern and find non-arrayed var
             import re

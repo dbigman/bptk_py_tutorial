@@ -30,10 +30,10 @@ Completed ✅
 In Progress 🔄
 - 🔄 Review remaining linter findings (flake8) for project files — follow-up fixes may be applied incrementally.
 - 🔄 Spec-workflow artifacts reviewed and tasks recorded — [`.spec-workflow/specs/hmlv-data-contracts`](.spec-workflow/specs/hmlv-data-contracts:1)
-- 🔄 PR draft prepared and validation artifact attached — [`PR_DRAFT_PHASE1.md`](PR_DRAFT_PHASE1.md:1)
+- ✅ PR draft prepared — [`PR_DRAFT_PHASE1.md`](PR_DRAFT_PHASE1.md:1)
 
 Pending / Manual ⏳
-- ⏳ Open PR on remote repository and request reviewer approvals (manual step; requires your GitHub credentials or your action)
+- ✅ Open PR on remote repository — Draft created: https://github.com/dbigman/bptk_py_tutorial/pull/1
   - Suggested PR title: "feat(data-contracts): Phase‑1 Data Contracts Pack + Phase‑2 starters"
   - Include [`PR_DRAFT_PHASE1.md`](PR_DRAFT_PHASE1.md:1) as PR description and attach `.artifacts/validation/validation_report.json`
 - ⏳ Confirm external links and hosted prototypes replacement (e.g., redirects from `prototypes.transentis.com`) if you want them changed or removed.

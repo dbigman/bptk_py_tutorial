@@ -1,5 +1,4 @@
 from BPTK_Py import Model
-from BPTK_Py import sd_functions as sd
 
 from .brewery import Brewery
 from .consumer import Consumer

@@ -1,5 +1,4 @@
 from BPTK_Py import Model
-from BPTK_Py import sd_functions as sd
 from .cash import Cash
 from .revenue import Revenue
 from .earnings import Earnings
