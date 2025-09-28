@@ -1,7 +1,7 @@
 [project]
-name = "bptk-py-tutorial"
+name = "my-bptk-py-tutorial"
 version = "0.1.0"
-description = "Add your description here"
+description = "Independent fork of bptk-py-tutorial"
 readme = "README.md"
 requires-python = ">=3.10.10"
 dependencies = []

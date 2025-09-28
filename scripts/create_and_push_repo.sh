@@ -2,7 +2,7 @@
 # Script to create GitHub repo and push current branch using gh CLI
 # Edit USERNAME before running
 
-USERNAME="your-github-username"
+USERNAME="dbigman"
 REPO="bptk_py_tutorial"
 VISIBILITY="private"
 BRANCH="phase1/data-contracts-pack"
