@@ -1,0 +1,217 @@
+{
+  "csv_validation": {
+    "valid": false,
+    "warnings": [],
+    "errors": [
+      "file:negative_products_invalid,row:2,column:process_time_mean,message:must be > 0"
+    ],
+    "structured_warnings": [],
+    "structured_errors": [
+      {
+        "file": "negative_products_invalid",
+        "row": "2",
+        "column": "process_time_mean",
+        "message": "must be > 0"
+      }
+    ]
+  },
+  "schema_validation": {
+    "valid": false,
+    "warnings": [],
+    "errors": [
+      "file:project_config.json,row:<n/a>,column:<root>,message:Additional properties are not allowed ('jobs' was unexpected)",
+      "file:project_config.json,row:<n/a>,column:demand.0.quantity,message:'10' is not of type 'integer'",
+      "file:project_config.json,row:<n/a>,column:demand.0.release_policy_tags,message:'CONWIP' is not of type 'array'",
+      "file:project_config.json,row:<n/a>,column:demand.1.quantity,message:'5' is not of type 'integer'",
+      "file:project_config.json,row:<n/a>,column:demand.1.release_policy_tags,message:'POLCA' is not of type 'array'",
+      "file:project_config.json,row:<n/a>,column:machines.0.capacity,message:'1' is not of type 'integer'",
+      "file:project_config.json,row:<n/a>,column:machines.1.capacity,message:'1' is not of type 'integer'",
+      "file:project_config.json,row:<n/a>,column:mtbf_mttr.0.mtbf_hours,message:'100.0' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:mtbf_mttr.0.mttr_hours,message:'4.0' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:mtbf_mttr.1.mtbf_hours,message:'200.0' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:mtbf_mttr.1.mttr_hours,message:'2.0' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:operators.0.skills,message:'M1;M2' is not of type 'array'",
+      "file:project_config.json,row:<n/a>,column:operators.1.skills,message:'M1' is not of type 'array'",
+      "file:project_config.json,row:<n/a>,column:products.0.process_time_mean,message:'2.5' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:products.0.process_time_sigma,message:'0.5' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:products.1.process_time_mean,message:'1.0' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:products.1.process_time_sigma,message:'0.2' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:routings.0,message:'steps' is a required property",
+      "file:project_config.json,row:<n/a>,column:routings.1,message:'steps' is a required property",
+      "file:project_config.json,row:<n/a>,column:setup_matrix.0.setup_time,message:'0.0' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:setup_matrix.1.setup_time,message:'0.75' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:setup_matrix.2.setup_time,message:'0.5' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:skills.0.level,message:'2' is not of type 'integer'",
+      "file:project_config.json,row:<n/a>,column:skills.1.level,message:'1' is not of type 'integer'",
+      "file:project_config.json,row:<n/a>,column:yields.0.yield_rate,message:'0.98' is not of type 'number'",
+      "file:project_config.json,row:<n/a>,column:yields.1.yield_rate,message:'0.95' is not of type 'number'"
+    ],
+    "structured_warnings": [],
+    "structured_errors": [
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "<root>",
+        "message": "Additional properties are not allowed ('jobs' was unexpected)"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "demand.0.quantity",
+        "message": "'10' is not of type 'integer'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "demand.0.release_policy_tags",
+        "message": "'CONWIP' is not of type 'array'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "demand.1.quantity",
+        "message": "'5' is not of type 'integer'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "demand.1.release_policy_tags",
+        "message": "'POLCA' is not of type 'array'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "machines.0.capacity",
+        "message": "'1' is not of type 'integer'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "machines.1.capacity",
+        "message": "'1' is not of type 'integer'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "mtbf_mttr.0.mtbf_hours",
+        "message": "'100.0' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "mtbf_mttr.0.mttr_hours",
+        "message": "'4.0' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "mtbf_mttr.1.mtbf_hours",
+        "message": "'200.0' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "mtbf_mttr.1.mttr_hours",
+        "message": "'2.0' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "operators.0.skills",
+        "message": "'M1;M2' is not of type 'array'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "operators.1.skills",
+        "message": "'M1' is not of type 'array'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "products.0.process_time_mean",
+        "message": "'2.5' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "products.0.process_time_sigma",
+        "message": "'0.5' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "products.1.process_time_mean",
+        "message": "'1.0' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "products.1.process_time_sigma",
+        "message": "'0.2' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "routings.0",
+        "message": "'steps' is a required property"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "routings.1",
+        "message": "'steps' is a required property"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "setup_matrix.0.setup_time",
+        "message": "'0.0' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "setup_matrix.1.setup_time",
+        "message": "'0.75' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "setup_matrix.2.setup_time",
+        "message": "'0.5' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "skills.0.level",
+        "message": "'2' is not of type 'integer'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "skills.1.level",
+        "message": "'1' is not of type 'integer'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "yields.0.yield_rate",
+        "message": "'0.98' is not of type 'number'"
+      },
+      {
+        "file": "project_config.json",
+        "row": "<n/a>",
+        "column": "yields.1.yield_rate",
+        "message": "'0.95' is not of type 'number'"
+      }
+    ]
+  },
+  "referential_validation": {
+    "valid": true,
+    "warnings": [],
+    "errors": [],
+    "structured_warnings": [],
+    "structured_errors": []
+  },
+  "generated_at": "2025-09-28T17:48:31.108727"
+}

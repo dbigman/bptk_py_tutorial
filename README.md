@@ -1,6 +1,6 @@
-# Overview Of The BPTK-Py Tutorial
+﻿# Overview Of The BPTK-Py Tutorial
 
-This tutorial contain sample agent-based and System Dynamics models along with Jupyter notebooks that illustrate the features of the BPTK-Py framework. This tutorial is designed as a companion to the [BPTK-Py online documentation](https://bptk.transentis.com) – the online documentation is generated from these notebooks using [quarto](https://www.quarto.org)
+This tutorial contain sample agent-based and System Dynamics models along with Jupyter notebooks that illustrate the features of the BPTK-Py framework. This tutorial is designed as a companion to the [BPTK-Py online documentation](https://github.com/dbigman/bptk_py_tutorial) – the online documentation is generated from these notebooks using [quarto](https://www.quarto.org)
 
 ## Installation
 
@@ -9,7 +9,7 @@ First, make sure you have Python 3 installed on your machine.
 Then follow these steps:
 
 1. On the command line, move into a directory where you would like to store the BPTK-Py tutorial. 
-2. Clone this repository: ```git clone https://github.com/transentis/bptk_py_tutorial.git```
+2. Clone this repository: ```git clone https://github.com/dbigman/bptk_py_tutorial.git```
 3. Install a virtual environment in that directory: ```python3 -m venv venv```
 4. Activate the virtual environment: ```source venv/bin/activate``` (MacOS/Linux) or `venv\scripts\activate.bat` (Windows)
 5. Install the necessary python modules: ```pip install -r requirements.txt```
@@ -117,7 +117,8 @@ You can best reach us per e-mail at [support@transentis.com](mailto:support@tran
 
 You can find further examples of models and dashboards build using BPTK in the following GitHub repositories:
 
-* [COVID Simulation](https://github.com/transentis/sim-covid-19). Jupyter notebooks and dashboards illustrating the SIR model.
-* [COVID Simulation Dashboard](https://github.com/transentis/sim-covid-dashboard). A web-based simulation dashboard for the COVID simulation built using our BPTK Widgets library for Javascript. View a [live version](http://www.covid-sim.com) of the dashboard online.
+* [COVID Simulation](https://github.com/dbigman/sim-covid-19). Jupyter notebooks and dashboards illustrating the SIR model.
+* [COVID Simulation Dashboard](https://github.com/dbigman/sim-covid-dashboard). A web-based simulation dashboard for the COVID simulation built using our BPTK Widgets library for Javascript. View a [live version](http://www.covid-sim.com) of the dashboard online.
+
 
 

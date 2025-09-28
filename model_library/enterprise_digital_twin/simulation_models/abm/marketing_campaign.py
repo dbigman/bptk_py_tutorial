@@ -1,5 +1,4 @@
 from BPTK_Py import Agent
-from BPTK_Py import Event
 
 class MarketingCampaign(Agent):
 

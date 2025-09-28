@@ -1,4 +1,4 @@
----
+﻿---
 title: "Installation"
 description: "Explains how to install the BPTK-Py business simulation framework."
 keywords: "agent-based modeling, abm, bptk, bptk-py, python, business simulation"
@@ -43,7 +43,7 @@ the BPTK-Py tutorial.
 
 Clone the BPTK-Py tutorial repository using `git clone`:
 ```python
-git clone https://github.com/transentis/bptk_py_tutorial.git
+git clone https://github.com/dbigman/bptk_py_tutorial.git
 ```
 ### Set up a virtual environment
 
